@@ -12,7 +12,7 @@ export default function Footer() {
           <Link href="/" className="flex items-center gap-2 group interactive mb-6">
             <Scale className="w-8 h-8 text-gold group-hover:text-cyan transition-colors" />
             <span className="font-bold text-xl tracking-wider uppercase">
-              Advocate <span className="text-gold">Aryan</span>
+              Advocate <span className="text-gold">Fariq</span>
             </span>
           </Link>
           <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
@@ -56,15 +56,15 @@ export default function Footer() {
           <ul className="space-y-4 text-gray-400 text-sm">
             <li className="flex gap-2">
               <Phone className="w-4 h-4 mt-0.5 text-cyan" />
-              +91 98765 43210
+              +91 83038 77102
             </li>
             <li className="flex gap-2">
               <Mail className="w-4 h-4 mt-0.5 text-cyan" />
-              aryan@advocate.in
+              fariq@advocate.in
             </li>
             <li className="flex gap-2">
               <MapPin className="w-4 h-4 mt-0.5 text-cyan" />
-              Supreme Court Chambers, New Delhi
+              Supreme Court, Lucknow
             </li>
           </ul>
         </div>
@@ -72,7 +72,7 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-gray-500 text-xs font-mono">
-          &copy; {currentYear} Advocate Aryan. All rights reserved.
+          &copy; {currentYear} Advocate Fariq. All rights reserved.
         </p>
       </div>
     </footer>

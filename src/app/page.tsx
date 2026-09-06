@@ -55,7 +55,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <Quote className="w-12 h-12 text-gold mx-auto mb-8 opacity-50" />
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-8 leading-snug">
-            "Aryan didn't just defend my company; he completely dismantled the opposition's case. He is a shark in the courtroom."
+            "Fariq didn't just defend my company; he completely dismantled the opposition's case. He is a shark in the courtroom."
           </h2>
           <p className="text-cyan font-mono uppercase tracking-widest">— CEO, Global Tech Firm</p>
         </div>

@@ -26,8 +26,8 @@ export default function ContactPage() {
               <div>
                 <h3 className="font-bold text-lg mb-1">Office Location</h3>
                 <p className="text-gray-400 font-mono text-sm">
-                  Chamber 404, Supreme Court Complex<br />
-                  New Delhi, 110001
+                  Chamber 404, Supreme Court<br />
+                  Lucknow, UP
                 </p>
               </div>
             </div>
@@ -35,14 +35,14 @@ export default function ContactPage() {
               <Phone className="w-6 h-6 text-cyan" />
               <div>
                 <h3 className="font-bold text-lg mb-1">Direct Line</h3>
-                <p className="text-gray-400 font-mono text-sm">+91 98765 43210</p>
+                <p className="text-gray-400 font-mono text-sm">+91 8303877102</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <Mail className="w-6 h-6 text-cyan" />
               <div>
                 <h3 className="font-bold text-lg mb-1">Email</h3>
-                <p className="text-gray-400 font-mono text-sm">aryan@advocate.in</p>
+                <p className="text-gray-400 font-mono text-sm">fariq@advocate.in</p>
               </div>
             </div>
           </div>

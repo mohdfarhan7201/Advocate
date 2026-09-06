@@ -75,7 +75,7 @@ export default function HeroSection() {
             </span>
           </h1>
           <p className="text-gray-400 text-lg md:text-xl mb-8 max-w-lg leading-relaxed">
-            I am Advocate Aryan. I provide elite, uncompromising legal representation tailored specifically to your case. When your freedom or assets are on the line, you need a fighter, not a factory.
+            I am Advocate Fariq. I provide elite, uncompromising legal representation tailored specifically to your case. When your freedom or assets are on the line, you need a fighter, not a factory.
           </p>
           <div className="flex gap-4">
             <Link 

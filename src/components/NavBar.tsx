@@ -36,7 +36,7 @@ export default function NavBar() {
         <Link href="/" className="flex items-center gap-2 group interactive">
           <Scale className="w-8 h-8 text-gold group-hover:text-cyan transition-colors" />
           <span className="font-bold text-xl tracking-wider uppercase">
-            Advocate <span className="text-gold">Aryan</span>
+            Advocate <span className="text-gold">Fariq</span>
           </span>
         </Link>
 

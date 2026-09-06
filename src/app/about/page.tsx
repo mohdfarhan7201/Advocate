@@ -1,14 +1,14 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Me - Advocate Aryan",
+  title: "About Me - Advocate Fariq",
 };
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen pt-32 pb-24 px-6 bg-void text-white">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 uppercase tracking-widest text-gold">Advocate Aryan</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-8 uppercase tracking-widest text-gold">Advocate Fariq</h1>
         <div className="glass p-8 md:p-12 mb-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-cyan/10 rounded-full blur-3xl" />
           <h2 className="text-2xl font-bold mb-4 text-cyan uppercase tracking-wider">Independent Counsel & Legal Strategist</h2>
