@@ -35,7 +35,7 @@ export default function ContactPage() {
               <Phone className="w-6 h-6 text-cyan" />
               <div>
                 <h3 className="font-bold text-lg mb-1">Direct Line</h3>
-                <p className="text-gray-400 font-mono text-sm">+91 8303877102</p>
+                <p className="text-gray-400 font-mono text-sm">+91 74083 31008</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
