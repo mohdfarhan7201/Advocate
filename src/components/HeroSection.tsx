@@ -1,68 +1,33 @@
 "use client";
 
-import { useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { motion } from "framer-motion";
-import * as THREE from "three";
-import { Environment, Float } from "@react-three/drei";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
-
-// 3D Gavel Object
-function Gavel() {
-  const groupRef = useRef<THREE.Group>(null);
-  const { mouse, viewport } = useThree();
-
-  useFrame(() => {
-    if (groupRef.current) {
-      // Gentle rotation based on mouse
-      const targetRotationX = (mouse.y * viewport.height) / 8;
-      const targetRotationY = (mouse.x * viewport.width) / 8;
-
-      groupRef.current.rotation.x += (targetRotationX - groupRef.current.rotation.x) * 0.05;
-      groupRef.current.rotation.y += (targetRotationY - groupRef.current.rotation.y) * 0.05;
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-      <group ref={groupRef} rotation={[0.5, -0.5, 0]}>
-        {/* Gavel Head */}
-        <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.6, 0.6, 2.5, 32]} />
-          <meshStandardMaterial color="#0B0B0C" metalness={0.8} roughness={0.2} />
-        </mesh>
-        
-        {/* Gavel Head Gold Bands */}
-        <mesh position={[1, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.65, 0.65, 0.2, 32]} />
-          <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.1} />
-        </mesh>
-        <mesh position={[-1, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.65, 0.65, 0.2, 32]} />
-          <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.1} />
-        </mesh>
-
-        {/* Gavel Handle */}
-        <mesh position={[0, -2, 0]}>
-          <cylinderGeometry args={[0.15, 0.2, 4, 32]} />
-          <meshStandardMaterial color="#0B0B0C" metalness={0.8} roughness={0.3} />
-        </mesh>
-        
-        {/* Handle Gold Base */}
-        <mesh position={[0, -4, 0]}>
-          <sphereGeometry args={[0.3, 32, 32]} />
-          <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.1} />
-        </mesh>
-      </group>
-    </Float>
-  );
-}
+import Image from "next/image";
 
 export default function HeroSection() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-100, 100], [15, -15]);
+  const rotateY = useTransform(x, [-100, 100], [-15, 15]);
+
+  function handleMouse(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const xPos = event.clientX - rect.left - rect.width / 2;
+    const yPos = event.clientY - rect.top - rect.height / 2;
+    x.set(xPos);
+    y.set(yPos);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
   return (
-    <section className="relative w-full h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden bg-void pt-20 px-6">
+    <section className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden bg-void pt-28 pb-20 px-6">
       {/* Text Content */}
-      <div className="relative z-10 w-full md:w-1/2 flex flex-col justify-center h-full max-w-2xl mx-auto md:ml-12 lg:ml-24">
+      <div className="relative z-10 w-full md:w-1/2 flex flex-col justify-center h-full max-w-2xl mx-auto md:ml-12 lg:ml-24 mb-12 md:mb-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,15 +59,36 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* 3D Canvas */}
-      <div className="absolute right-0 top-0 w-full md:w-1/2 h-full z-0 pointer-events-none md:pointer-events-auto">
-        <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1.5} color="#D4AF37" />
-          <pointLight position={[-10, -10, -5]} intensity={1} color="#00F3FF" />
-          <Gavel />
-          <Environment preset="city" />
-        </Canvas>
+      {/* 3D Image Hover Effect */}
+      <div className="w-full md:w-1/2 flex justify-center items-center perspective-[1000px] z-10">
+        <motion.div
+          style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+          onMouseMove={handleMouse}
+          onMouseLeave={handleMouseLeave}
+          className="relative w-72 h-96 md:w-96 md:h-[500px] rounded-lg cursor-crosshair group"
+        >
+          {/* Glowing background behind image */}
+          <div className="absolute inset-0 bg-cyan blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" style={{ transform: "translateZ(-50px)" }} />
+          
+          {/* Main Image Container */}
+          <div className="absolute inset-0 border-2 border-white/20 rounded-lg overflow-hidden bg-obsidian shadow-2xl" style={{ transform: "translateZ(0px)" }}>
+            <div className="relative w-full h-full">
+              {/* NOTE: User must place their image at public/fariq.jpg */}
+              <Image 
+                src="/fariq.jpg" 
+                alt="Advocate Fariq" 
+                fill 
+                className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 grayscale group-hover:grayscale-0"
+              />
+              
+              {/* Scanline overlay for cyber effect */}
+              <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(transparent_50%,_rgba(0,0,0,1)_50%)] bg-[length:100%_4px]" />
+            </div>
+          </div>
+          
+          {/* Floating border element for extra 3D depth */}
+          <div className="absolute -inset-4 border border-gold/30 rounded-lg pointer-events-none transition-all duration-500 group-hover:border-gold/60" style={{ transform: "translateZ(50px)" }} />
+        </motion.div>
       </div>
     </section>
   );
